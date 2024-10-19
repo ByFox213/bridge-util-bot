@@ -24,7 +24,7 @@ async def message_handler_telegram(message: MsgNats):
     """Takes a message from nats and sends it to telegram."""
 
     msg = MsgEvents(**json.loads(message.data.decode()))
-    logging.debug("teesports.events > %s", msg)
+    logging.debug("tw.events > %s", msg)
     try:
         await bot.send_message(
             env.chat_id,
@@ -39,8 +39,8 @@ async def main() -> None:
     ns, js = await nats_connect(env)
     bot.ns = ns
     bot.js = js
-    await js.subscribe("teesports.events", "moderator_bot", cb=message_handler_telegram)
-    logging.info("nats js subscribe \"teesports.events\"")
+    await js.subscribe("tw.events", "moderator_bot", cb=message_handler_telegram)
+    logging.info("nats js subscribe \"tw.events\"")
     await dp.start_polling(bot, skip_updates=True)
 
 
