@@ -3,3 +3,4 @@ nats-py
 aiogram
 pydantic
 PyYaml
+pytelegrambotapi
