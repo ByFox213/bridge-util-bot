@@ -1,0 +1,4 @@
+TELEGRAM_BOT_TOKEN: "TOKEN"
+nats_server: nats://nats:4222
+chat_id: "-1"
+message_thread_id: 0

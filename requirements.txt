@@ -1,0 +1,5 @@
+aiohttp
+nats-py
+aiogram
+pydantic
+PyYaml
