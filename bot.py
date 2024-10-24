@@ -1,13 +1,11 @@
 import asyncio
 import json
 import logging
-import sys
 
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from nats.aio.msg import Msg as MsgNats
-from telebot.apihelper import ApiTelegramException
 
 from model import Env, MsgEvents
 from util import nats_connect, load_yaml
@@ -23,14 +21,11 @@ async def message_handler_telegram(message: MsgNats):
 
     msg = MsgEvents(**json.loads(message.data.decode()))
     logging.debug("tw.events > %s", msg)
-    try:
-        await bot.send_message(
-            env.chat_id,
-            f"{msg.server_name}: `{msg.rcon}`",
-            message_thread_id=env.message_thread_id
-        )
-    except ApiTelegramException:
-        logging.debug("ApiTelegramException occurred")
+    await bot.send_message(
+        env.chat_id,
+        f"{msg.server_name}: `{msg.rcon}`",
+        message_thread_id=env.message_thread_id
+    )
 
 
 async def main() -> None:
