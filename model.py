@@ -15,9 +15,3 @@ class MsgEvents(BaseModel):
     server_name: str
     rcon: str
 
-
-class Moderators(BaseModel):
-    telegram_id: int
-    nickname: str
-    permission: int = Field(1)
-
